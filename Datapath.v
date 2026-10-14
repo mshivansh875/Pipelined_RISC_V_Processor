@@ -15,7 +15,7 @@ module Datapath (
     input [1:0] wb_sel_id,
     input [2:0] imm_sel_id,
     output reg comparator_result,
-    output reg [31:0] ALUResult_ex,
+    output [31:0] ALUResult_ex,
     output reg [31:0] instruction_id,
     output reg [6:0] opcode_ex,
     input [3:0] ALUControl_id
@@ -33,6 +33,8 @@ wire [4:0] A1_id, A2_id, A3_id;
 wire [31:0] read_data1_id, read_data2_id, SignImm_id;
 reg [4:0] rd_id;
 reg [31:0] PC_id, PC_mux_0_id;
+
+
 reg reg_write_ex, mem_write_ex, sel_srcA_ex, sel_srcB_ex;
 reg [1:0] wb_sel_ex;
 reg [2:0] imm_sel_ex;
@@ -271,13 +273,11 @@ instr_mem[6]  <= 32'h00A00513; // addi x10, x0, 10
         .imm_sel(imm_sel_id),
         .SignImm(SignImm_id)
     );
-    wire [31:0] ALUResult_ex_1;
-    assign ALUResult_ex_1 = ALUResult_ex;
     ALU a1 (
         .ALUControl(ALUControl_ex),
         .SrcA(SrcA_ex),
         .SrcB(SrcB_ex),
-        .ALUResult(ALUResult_ex_1)
+        .ALUResult(ALUResult_ex)
     );
 
     data_mem dm1 (

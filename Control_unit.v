@@ -103,6 +103,7 @@ module Control_unit (
                     end
                     3'd6: ALUControl <= 4'd1;
                     3'd7: ALUControl <= 4'd0;
+                    default: ALUControl <= 4'd15;
                 endcase
             end
             default: ALUControl <= 4'd15;
